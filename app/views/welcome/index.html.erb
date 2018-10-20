@@ -25,7 +25,7 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container box_1620">
                     <!-- Brand and toggle get grouped for better mobile display -->
-                    <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a>
+                    <a class="navbar-brand logo_h" href="index.html"><h2 ><font color="green">Photo Hub</font></h2> <!-- <img src="<%#= asset_path("lgoo.jpg")%>" alt="">  --></a>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -39,14 +39,6 @@
                             <li class="nav-item"><a class="nav-link" href="service.html">Services</a></li>
                             <li class="nav-item"><a class="nav-link" href="about-us.html">About</a></li>
                             <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
-                            <% if user_signed_in? %>
-  Logged in as <strong><%= current_user.email %></strong>.
-  <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link' %> |
-  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %>
-<% else %>
-  <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> |
-  <%= link_to "Login", new_user_session_path, :class => 'navbar-link'  %>
-<% end %>
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Blog</a>
                                 <ul class="dropdown-menu">
@@ -60,6 +52,19 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
                         </ul>
+                        <% if !user_signed_in? %>
+			            <li class="nav-item">
+			              <button class="btn btn-success "><a class="nav-link js-scroll-trigger" href="users/sign_in">signin</a></button>
+			            </li>&nbsp;&nbsp;
+			           <li class="nav-item">
+			              <button class="btn btn-success "><a class="nav-link js-scroll-trigger" href="users/sign_up">signup</a></button>
+			            </li>
+			                <% else %>
+			            <li class="nav-item">
+			              <button class="btn btn-success ">
+			                <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'nav-link js-scroll-trigger'  %></button>
+			            </li>
+			              <%end%>
                     </div> 
                 </div>
             </nav>
@@ -90,21 +95,27 @@
 						<li data-filter=".ap"><a href="#">Approved</a></li>
 						<li data-filter=".unp"><a href="#">Unapproved</a></li>
 						<li data-filter=".unv"><a href="#">Unviewed</a></li>
+                          
 					</ul>
         		</div>
         	</div>
-        	<div class="container box_1620">
-        		<div class="gallery_f_inner row imageGallery1">
-        			<div class="col-lg-3 col-md-4 col-sm-6 ap">
-        				<div class="h_gallery_item">
-        					<img src="img/gallery/gallery-1.jpg" alt="">
-        					<div class="hover">
+        	<div class="container ">
+        		<!-- <div class="gallery_f_inner row imageGallery1"> -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 ap"> -->
+        				 <!-- <div class="h_gallery_item"> --> -->
+        					<!-- <img src="img/gallery/gallery-1.jpg" alt=""> --> 
+                            <% @images.each do |image| %>
+                            <%#= image.upload_image.url %>
+                            
+                             <%= image_tag image.upload_image.url,width: 200 %>
+                      <%end%>
+        					<!-- <div class="hover">
         						<a href="#"><h4>Spreading Peace to world</h4></a>
         						<a class="light" href="img/gallery/gallery-1.jpg"><i class="fa fa-expand"></i></a>
-        					</div>
-        				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 unv">
+        					</div> -->
+        				<!-- </div> --> 
+        			<!-- </div>  -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 unv">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-2.jpg" alt="">
         					<div class="hover">
@@ -121,8 +132,8 @@
         						<a class="light" href="img/gallery/gallery-3.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 unp">
+        			</div> -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 unp">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-4.jpg" alt="">
         					<div class="hover">
@@ -130,8 +141,8 @@
         						<a class="light" href="img/gallery/gallery-4.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 unv">
+        			</div> -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 unv">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-5.jpg" alt="">
         					<div class="hover">
@@ -139,8 +150,8 @@
         						<a class="light" href="img/gallery/gallery-5.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 ap">
+        			</div> -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 ap">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-6.jpg" alt="">
         					<div class="hover">
@@ -148,8 +159,8 @@
         						<a class="light" href="img/gallery/gallery-6.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 unp">
+        			</div> -->
+        		<!-- 	<div class="col-lg-3 col-md-4 col-sm-6 unp">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-7.jpg" alt="">
         					<div class="hover">
@@ -157,8 +168,8 @@
         						<a class="light" href="img/gallery/gallery-7.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 unp">
+        			</div> -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 unp">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-8.jpg" alt="">
         					<div class="hover">
@@ -166,8 +177,8 @@
         						<a class="light" href="img/gallery/gallery-8.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 unv">
+        			</div> -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 unv">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-9.jpg" alt="">
         					<div class="hover">
@@ -175,8 +186,8 @@
         						<a class="light" href="img/gallery/gallery-9.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 unp">
+        			</div> -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 unp">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-10.jpg" alt="">
         					<div class="hover">
@@ -184,8 +195,8 @@
         						<a class="light" href="img/gallery/gallery-10.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 ap">
+        			</div> -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 ap">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-11.jpg" alt="">
         					<div class="hover">
@@ -193,8 +204,8 @@
         						<a class="light" href="img/gallery/gallery-11.jpg"><i class="fa fa-expand"></i></a>
         					</div>
         				</div>
-        			</div>
-        			<div class="col-lg-3 col-md-4 col-sm-6 unv">
+        			</div> -->
+        			<!-- <div class="col-lg-3 col-md-4 col-sm-6 unv">
         				<div class="h_gallery_item">
         					<img src="img/gallery/gallery-12.jpg" alt="">
         					<div class="hover">
@@ -203,7 +214,7 @@
         					</div>
         				</div>
         			</div>
-        		</div>
+        		</div> -->
         		<div class="button_more">
         			<a class="btn theme_btn" href="#">Load More Images</a>
         		</div>
