@@ -1,0 +1,12 @@
+ <section class="home_gallery_area p_120">
+  	<div class="container ">
+        		
+<% @images.each do |image| %>
+ <%= image_tag image.upload_image.url,width: 200 %>
+	<%end%>
+        					
+        		<div class="button_more">
+        			<a class="btn theme_btn" href="#">Load More Images</a>
+        		</div>
+        	</div>
+        </section>
