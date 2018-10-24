@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_23_131525) do
+ActiveRecord::Schema.define(version: 2018_10_24_054132) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 2018_10_23_131525) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
-  create_table "family_pics", force: :cascade do |t|
-    t.string "uplaod_image"
+  create_table "family_images", force: :cascade do |t|
+    t.string "upload_pic"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

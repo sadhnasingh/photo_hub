@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FamilyPicTest < ActiveSupport::TestCase
+class FamilyImageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
